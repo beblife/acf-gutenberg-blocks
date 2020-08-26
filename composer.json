@@ -14,5 +14,10 @@
         "php": ">7.0",
         "composer/installers": "~1.0",
         "wordplate/acf": "^8.5@dev"
+    },
+    "autoload": {
+        "classmap": [
+            "src"
+        ]
     }
 }
