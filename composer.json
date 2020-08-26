@@ -1,6 +1,6 @@
 {
     "name": "beblife/acf-gutenberg-blocks",
-    "description": "A Wordpress plugin that provides an elegant way to register Gutenberg blocks using ACF PRO",
+    "description": "A Wordpress plugin that provides an elegant way for developers to register Gutenberg blocks using the ACF PRO blocks feature",
     "type": "wordpress-plugin",
     "license": "MIT",
     "authors": [
