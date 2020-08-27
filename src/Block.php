@@ -30,7 +30,10 @@ abstract class Block
 
     abstract public function render();
 
-    abstract public function fields();
+    public function fields()
+    {
+        return [];
+    }
 
     public function get($key, $default = null)
     {
