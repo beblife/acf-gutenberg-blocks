@@ -14,6 +14,7 @@ An elegant way for developers to register Gutenberg blocks using the Advanced Cu
 ## Installation
 
 You can install this package through composer:
+
 ```sh
 composer require beblife/acf-gutenberg-blocks
 ```
@@ -22,6 +23,7 @@ composer require beblife/acf-gutenberg-blocks
 You can define custom blocks by creating classes that extend the base block class provided by this package.
 
 By extending from the base block enables you to easily define custom blocks with a minimum of configuration:
+
 ```php
 use GutenbergBlocks\Block;
 
@@ -85,6 +87,7 @@ Fields can be added to a custom block by defining a `fields()` method on the cla
 This package includes [wordplate/extended-acf](https://github.com/wordplate/extended-acf) to define fields for a block in an easy and elegant way. Make sure to read the documentation to see which field types are available.
 
 Below you can find an example of how you can define fields using this package:
+
 ```php
 public function fields()
 {
