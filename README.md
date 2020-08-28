@@ -72,6 +72,7 @@ protected $allow_multiple = true;
 
 To enable the custom blocks you need to register them by hooking into the `acf/init` filter. This allows for a flexible way to define which blocks should be enabled.
 
+You can enable blocks by passing an array with classes:
 ```php
 add_filter('acf/init', function () {
     \GutenbergBlocks\Gutenberg::register([
@@ -79,6 +80,15 @@ add_filter('acf/init', function () {
     ]);
 });
 ```
+To automatically register all blocks in a directory can provide the relative path in the current theme:
+```php
+add_filter('acf/init', function () {
+    // Registers all blocks in `wp-content/themes/{current_theme}/blocks`
+    \GutenbergBlocks\Gutenberg::register('blocks');
+});
+```
+
+> It's important to note that subdirectories of the provided directory will not be registered!
 
 ## Configure fields
 
