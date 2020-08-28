@@ -141,7 +141,10 @@ You can override or extend the classes that are added by defining your own `clas
 // Override the default classes
 protected function classes($block)
 {
-    return 'my-custom-css-class';
+    return [
+        'my-custom-css-class'
+        //...
+    ];
 }
 
 // Extend the default classes
