@@ -79,7 +79,7 @@ abstract class Block
                 'multiple' => $this->allow_multiple,
             ],
             'render_callback' => function ($block) {
-                echo '<div class="'. $this->classes($block) .'">';
+                echo '<div class="'. trim(implode(' ', $this->classes($block))) .'">';
                 echo $this->render();
                 echo '</div>';
             },
@@ -88,12 +88,12 @@ abstract class Block
 
     protected function classes($block)
     {
-        return trim(implode(' ', [
+        return [
             'wp-blocks-block',
             'wp-block-' .$this->name,
             $block['className'] ?: '',
             $block['align'] ? 'align' . $block['align'] : '',
-        ]));
+        ];
     }
 
     private function register()

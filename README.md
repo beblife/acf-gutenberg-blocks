@@ -147,11 +147,9 @@ protected function classes($block)
 // Extend the default classes
 protected function classes($block)
 {
-    $classes = parent::classes($block);
-
-    $classes .= ' my-custom-css-class';
-
-    return $classes;
+    return array_merge(parent::classes($block), [
+        'my-custom-css-class',
+    ]);
 }
 ```
 
