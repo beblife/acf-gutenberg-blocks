@@ -54,12 +54,14 @@ abstract class Block
 
     protected function register_fields()
     {
-        register_extended_field_group([
-            'title' => $this->title,
-            'key' => 'field_group_block_' . $this->name,
-            'location' => $this->location(),
-            'fields' => $this->fields(),
-        ]);
+        if ($this->fields()) {
+            register_extended_field_group([
+                'title' => $this->title,
+                'key' => 'field_group_block_' . $this->name,
+                'location' => $this->location(),
+                'fields' => $this->fields(),
+            ]);
+        }
     }
 
     protected function register_block()
