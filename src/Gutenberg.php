@@ -2,12 +2,12 @@
 
 namespace GutenbergBlocks;
 
+use Illuminate\Filesystem\Filesystem;
+
 class Gutenberg
 {
     public static function register($blocksOrPath)
     {
-        $blocks = [];
-
         if (is_array($blocksOrPath)) {
             $blocks = $blocksOrPath;
         }
@@ -16,17 +16,13 @@ class Gutenberg
             $blocksDir = trailingslashit(get_stylesheet_directory());
             $blocksDir = trailingslashit($blocksDir . $blocksOrPath);
 
-            foreach (glob($blocksDir . '*.php') as $file) {
-                require_once $file;
+            foreach ((new Filesystem)->allFiles($blocksDir) as $blockFile) {
+                require_once $blockFile->getRealPath();
 
-                if (class_exists($class = basename($file, '.php'))) {
-                    $blocks[] = $class;
+                if (class_exists($class = basename($blockFile, '.php'))) {
+                    new $class();
                 }
             }
-        }
-
-        foreach ($blocks as $block) {
-            new $block();
         }
     }
 }
