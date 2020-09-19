@@ -88,8 +88,6 @@ add_filter('acf/init', function () {
 });
 ```
 
-> It's important to note that subdirectories of the provided directory will not be registered!
-
 ## Configure fields
 
 Fields can be added to a custom block by defining a `fields()` method on the class and make it return an array of fields to add.
