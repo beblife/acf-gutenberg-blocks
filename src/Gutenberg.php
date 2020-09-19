@@ -8,6 +8,8 @@ class Gutenberg
 {
     public static function register($blocksOrPath)
     {
+        $blocks = [];
+
         if (is_array($blocksOrPath)) {
             $blocks = $blocksOrPath;
         }
@@ -20,9 +22,13 @@ class Gutenberg
                 require_once $blockFile->getRealPath();
 
                 if (class_exists($class = basename($blockFile, '.php'))) {
-                    new $class();
+                    $blocks[] = $class;
                 }
             }
+        }
+
+        foreach ($blocks as $block) {
+            new $block();
         }
     }
 }
