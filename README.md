@@ -66,6 +66,8 @@ protected $align = ['wide', 'full'];
 protected $allow_mode_switch = true;
 
 protected $allow_multiple = true;
+
+protected $parent = [];
 ```
 
 ## Register blocks
@@ -87,6 +89,25 @@ add_filter('acf/init', function () {
     \GutenbergBlocks\Gutenberg::register('blocks');
 });
 ```
+
+### Defining a parent block
+
+You can define a block to have a parent block by updating the `$parent` property on your block class.
+This will result in the block being hidden from the blocks list in Gutenberg but only available as a "sub block" for the parent block.
+
+```php
+class ChildBlock extends Block
+{
+    // ...
+
+    protected $parent = [
+        ParentBlock::class,
+    ];
+}
+```
+
+> For the child block to be selectable within the parent block you will need to set `$inner_blocks = true` on the parent block.
+
 
 ## Configure fields
 

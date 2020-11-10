@@ -28,6 +28,10 @@ abstract class Block
 
     protected $allow_multiple = true;
 
+    protected $parent = [];
+
+    protected $inner_blocks = false;
+
     abstract public function render();
 
     public function fields()
@@ -48,7 +52,7 @@ abstract class Block
     public function location()
     {
         return [
-            Location::if('block', 'acf/' . $this->name),
+            Location::if('block', $this->__toString()),
         ];
     }
 
@@ -75,10 +79,12 @@ abstract class Block
             'icon' => $this->icon,
             'align' => $this->default_align,
             'mode' => $this->mode,
+            'parent' => $this->parent,
             'supports' => [
                 'align' => $this->align,
                 'mode' => $this->allow_mode_switch,
                 'multiple' => $this->allow_multiple,
+                'jsx' => $this->inner_blocks,
             ],
             'render_callback' => function ($block) {
                 echo '<div class="'. trim(implode(' ', $this->classes($block))) .'">';
@@ -107,5 +113,10 @@ abstract class Block
     public function __destruct()
     {
         $this->register();
+    }
+
+    public function __toString()
+    {
+        return 'acf/' . $this->name;
     }
 }
